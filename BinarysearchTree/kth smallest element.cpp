@@ -1,4 +1,5 @@
-class Solution {
+/*-----------------------------------------------------brute----------------------------------------------->*/
+/*class Solution {
 public:
     struct Compare {
         bool operator()(TreeNode* a, TreeNode* b) {
@@ -28,4 +29,20 @@ public:
         }
         return pq.top()->val;
     }
-};
+};*/
+
+
+
+/*--------------------------------optimal-----------------------------------*/
+int kthSmallest(TreeNode* root, int k) {
+    stack<TreeNode*> st;
+    while(true) {
+        while(root) {
+            st.push(root);
+            root = root->left;
+        }
+        root = st.top(); st.pop();
+        if(--k == 0) return root->val;
+        root = root->right;
+    }
+}
